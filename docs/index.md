@@ -4,7 +4,7 @@
 
 | File | Description |
 |------|-------------|
-| `chatbot.py` | Main entry point — terminal chatbot loop |
+| `chatbot.py` | Main entry point — Gradio web chatbot |
 
 ## Documentation
 
@@ -20,3 +20,4 @@
 | File | Feature | Status |
 |------|---------|--------|
 | `docs/01-ollama-chatbot.md` | Initial chatbot | done |
+| `docs/02-web-ui.md` | Web UI (Gradio) | implementation |

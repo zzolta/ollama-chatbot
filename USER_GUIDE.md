@@ -6,15 +6,11 @@
 python chatbot.py
 ```
 
+The app will open automatically in your browser at `http://localhost:7860`.
+
 ## Setting the Temperature
 
-On startup you will be asked to choose a temperature:
-
-```
-Enter temperature (0.0 - 1.0) or press Enter to use default [0.7]:
-```
-
-Temperature controls how creative or consistent the model's responses are.
+Use the **Temperature** slider at the bottom of the chat window to control how creative or consistent the model's responses are.
 
 | Value | Behaviour |
 |-------|-----------|
@@ -23,19 +19,14 @@ Temperature controls how creative or consistent the model's responses are.
 | `0.7` | Default — balanced creativity and consistency |
 | `1.0` | Raw probability distribution — more varied, may feel unpredictable |
 
-Press **Enter** without typing anything to use the default (`0.7`). Any value outside `0.0–1.0` is clamped automatically. Invalid text falls back to `0.7`.
+A warning or info message appears below the slider when you select `0`, `0.5`, or `1.0`.
 
 ## Chatting
 
-Type your message and press **Enter**. The bot will respond.
-
-```
-You: What is the capital of France?
-Bot: The capital of France is Paris.
-```
+Type your message in the input box at the bottom and press **Enter** or click **Submit**. The bot will respond in the chat window.
 
 The conversation history is kept for the entire session, so the model remembers what was said earlier in the same chat.
 
 ## Exiting
 
-Type `quit`, `exit`, or `q` and press **Enter**.
+Close the browser tab and stop the terminal process with `Ctrl+C`.

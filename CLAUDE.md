@@ -15,12 +15,14 @@ Follow `docs/process.md`. Every feature goes through:
 
 ## Project Structure
 
-- `chatbot.py` — main entry point, entire application
+- `chatbot.py` — main entry point, Gradio web chatbot
+- `requirements.txt` — Python dependencies (`ollama`, `gradio`)
 - `PRD.md` — legacy plan (superseded by `docs/01-ollama-chatbot.md`)
 - `USER_GUIDE.md` — end-user documentation
 - `docs/process.md` — SDLC process
 - `docs/index.md` — repo index
-- `docs/01-ollama-chatbot.md` — active PRD
+- `docs/01-ollama-chatbot.md` — initial chatbot PRD (done)
+- `docs/02-web-ui.md` — active PRD (web UI)
 
 ## Prerequisites
 

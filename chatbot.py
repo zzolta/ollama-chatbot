@@ -1,44 +1,36 @@
+import gradio as gr
 import ollama
 
 MODEL = "gemma4:e2b"
 client = ollama.Client(host="http://localhost:11434")
 
-print("Chatbot ready! Type 'quit' to exit.")
-print("Enter temperature (0.0 - 1.0) or press Enter to use default [0.7]: ", end="")
-temp_input = input().strip()
+WARNINGS = {
+    0.0: "Warning: temperature 0 means greedy decoding — responses will be maximally consistent but may feel repetitive.",
+    0.5: "Good average, but less creative than default.",
+    1.0: "Warning: temperature 1 uses the raw probability distribution — responses may be more varied or unpredictable.",
+}
 
-if temp_input == "":
-    temperature = 0.7
-else:
-    try:
-        temperature = float(temp_input)
-        temperature = max(0.0, min(1.0, temperature))
-    except ValueError:
-        print("Invalid input, defaulting to 0.7.")
-        temperature = 0.7
+def get_warning(temperature):
+    return WARNINGS.get(temperature, "")
 
-if temperature == 0:
-    print("Warning: temperature 0 means greedy decoding — responses will be maximally consistent but may feel repetitive.")
-elif temperature == 0.5:
-    print("Good average, but less creative than default.")
-elif temperature == 1:
-    print("Warning: temperature 1 uses the raw probability distribution — responses may be more varied or unpredictable.")
-
-print(f"Using temperature: {temperature}\n")
-
-messages = []
-
-while True:
-    user_input = input("You: ").strip()
-    if user_input.lower() in ("quit", "exit", "q"):
-        break
-    if not user_input:
-        continue
-
-    messages.append({"role": "user", "content": user_input})
-
+def chat(message, history, temperature):
+    messages = []
+    for m in history:
+        text = "".join(part["text"] for part in m["content"] if part.get("type") == "text")
+        messages.append({"role": m["role"], "content": text})
+    messages.append({"role": "user", "content": message})
     response = client.chat(model=MODEL, messages=messages, options={"temperature": temperature})
-    reply = response.message.content
+    return response.message.content
 
-    messages.append({"role": "assistant", "content": reply})
-    print(f"Bot: {reply}\n")
+with gr.Blocks(title="Ollama Chatbot") as demo:
+    gr.Markdown("# Ollama Chatbot")
+    chatbot = gr.ChatInterface(
+        chat,
+        additional_inputs=[
+            gr.Slider(0.0, 1.0, value=0.7, step=0.1, label="Temperature"),
+        ],
+    )
+    warning = gr.Markdown("")
+    chatbot.additional_inputs[0].change(get_warning, chatbot.additional_inputs[0], warning)
+
+demo.launch()
