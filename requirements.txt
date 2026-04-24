@@ -1,2 +1,2 @@
-ollama
 gradio
+huggingface_hub

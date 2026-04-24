@@ -1,8 +1,9 @@
+import os
 import gradio as gr
-import ollama
+from huggingface_hub import InferenceClient
 
-MODEL = "gemma4:e2b"
-client = ollama.Client(host="http://localhost:11434")
+MODEL = "Qwen/Qwen2.5-7B-Instruct"
+client = InferenceClient(model=MODEL, token=os.getenv("HF_TOKEN"))
 
 WARNINGS = {
     0.0: "Warning: temperature 0 means greedy decoding — responses will be maximally consistent but may feel repetitive.",
@@ -19,11 +20,11 @@ def chat(message, history, temperature):
         text = "".join(part["text"] for part in m["content"] if part.get("type") == "text")
         messages.append({"role": m["role"], "content": text})
     messages.append({"role": "user", "content": message})
-    response = client.chat(model=MODEL, messages=messages, options={"temperature": temperature})
-    return response.message.content
+    response = client.chat_completion(messages=messages, max_tokens=512, temperature=temperature)
+    return response.choices[0].message.content
 
-with gr.Blocks(title="Ollama Chatbot") as demo:
-    gr.Markdown("# Ollama Chatbot")
+with gr.Blocks(title="AI Chatbot") as demo:
+    gr.Markdown("# AI Chatbot")
     chatbot = gr.ChatInterface(
         chat,
         additional_inputs=[

@@ -1,12 +1,24 @@
-# User Guide — Ollama Chatbot
+# User Guide — AI Chatbot
 
-## Starting the App
+## Using the Hosted App
 
-```bash
+The chatbot is publicly available on Hugging Face Spaces — no installation needed. Open the Space URL in your browser and start chatting.
+
+## Running Locally
+
+**Windows (CMD):**
+```cmd
+set HF_TOKEN=hf_your_token_here
 python chatbot.py
 ```
 
-The app will open automatically in your browser at `http://localhost:7860`.
+**Mac/Linux:**
+```bash
+export HF_TOKEN=hf_your_token_here
+python chatbot.py
+```
+
+The app opens automatically at `http://localhost:7860`. You need a free Hugging Face account to get an API token at `huggingface.co/settings/tokens`.
 
 ## Setting the Temperature
 
@@ -27,6 +39,6 @@ Type your message in the input box at the bottom and press **Enter** or click **
 
 The conversation history is kept for the entire session, so the model remembers what was said earlier in the same chat.
 
-## Exiting
+## Exiting (local)
 
 Close the browser tab and stop the terminal process with `Ctrl+C`.
