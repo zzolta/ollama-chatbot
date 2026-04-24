@@ -24,7 +24,8 @@ Follow `docs/process.md`. Every feature goes through:
 - `docs/index.md` — repo index
 - `docs/01-ollama-chatbot.md` — initial chatbot PRD (done)
 - `docs/02-web-ui.md` — web UI PRD (done)
-- `docs/03-hf-spaces.md` — active PRD (HF Spaces deployment)
+- `docs/03-hf-spaces.md` — HF Spaces deployment PRD (done)
+- `docs/04-web-search.md` — active PRD (internet search)
 
 ## Prerequisites (local)
 

@@ -23,4 +23,5 @@
 |------|---------|--------|
 | `docs/01-ollama-chatbot.md` | Initial terminal chatbot | done |
 | `docs/02-web-ui.md` | Web UI (Gradio) | done |
-| `docs/03-hf-spaces.md` | HF Spaces public deployment | implementation |
+| `docs/03-hf-spaces.md` | HF Spaces public deployment | done |
+| `docs/04-web-search.md` | Internet search via Tavily | implementation |
